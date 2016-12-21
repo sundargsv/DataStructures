@@ -1,15 +1,17 @@
-package com.sundar.queue;
+package com.sundar.trees;
 
 import java.util.NoSuchElementException;
 
-public class ArrayQueueModel {
+import com.sundar.trees.models.Node;
 
-	protected int Queue[];
+public class NodeInQueue {
+
+	protected Node Queue[];
 	protected int front, rear, size, len;
 	
-	public ArrayQueueModel(int n) {
-		Queue = new int[n];
-		size = n;
+	public NodeInQueue(int nodeCount) {
+		Queue = new Node[nodeCount];
+		size = nodeCount;
 		len = 0;
 		front = -1;
 		rear = -1;
@@ -18,23 +20,26 @@ public class ArrayQueueModel {
 	public boolean isEmpty(){
 		return front == -1;
 	}
+	
 	public boolean isFull(){
 		return front==0 && rear == size -1 ;
 	}
 	
-	public int getSize()
-	{
-	    return len ;
-	}    
-	 
-	public int front(){
+	public Node frontNode(){
 		
 		if(isEmpty())
 			throw new NoSuchElementException("Underflow exception");
 		return Queue[front];
 	}
-	
-	public void enQueue(int data){
+
+	public int front(){
+		
+		if(isEmpty())
+			throw new NoSuchElementException("Underflow exception");
+		return Queue[front].data;
+	}
+
+	public void enQueue(Node data){
 		
 		if(isFull())
 			throw new IndexOutOfBoundsException("Overflow exception");
@@ -68,27 +73,4 @@ public class ArrayQueueModel {
 		}	
 		return data;
 	}
-	
-	public void display(){
-		
-		if(len == 0){
-			System.out.println("Empty");
-			System.out.println("Length is :" +len);
-			return;
-		}else{
-			int i = 0;
-			
-			while(i < len){
-				System.out.println(Queue[i]+"");
-				i++;
-			}
-			
-		}
-			
-		
-		
-	}
-	
-	
-	
 }
