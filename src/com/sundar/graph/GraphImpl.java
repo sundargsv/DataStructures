@@ -1,5 +1,6 @@
 package com.sundar.graph;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,10 +13,15 @@ public class GraphImpl {
         
         Scanner scan = new Scanner(System.in);
         
-        System.out.println("Enter the number of vertices in graph");
+      System.out.println("Enter the number of vertices in graph");
         number_of_vertices = scan.nextInt();
-        //number_of_edges = scan.nextInt();
-        GraphAdjacencyList adjacencyList = new GraphAdjacencyList(number_of_vertices);
+       
+        System.out.println("Enter the city names one by one");
+        ArrayList<Integer> cities = new ArrayList<>();
+        for(int i = 0; i < number_of_vertices; i ++){
+        	cities.add(scan.nextInt());
+        }
+        GraphAdjacencyList adjacencyList = new GraphAdjacencyList(cities);
         List<Integer> edgeList;
         int choice;
         char choose;
@@ -28,6 +34,8 @@ public class GraphImpl {
              System.out.println("3.Display all edge connection");
              System.out.println("4.Get Connection count/ edge count");
              System.out.println("5.Remove edge/ connection");
+             System.out.println("6.BFS - Level order traversal");
+             System.out.println("7.DFS Traversal");
              choice = scan.nextInt();
              switch (choice) {
      		case 1:
@@ -51,6 +59,17 @@ public class GraphImpl {
      			System.out.println("Enter the source & destination to remove the connection");
      			adjacencyList.removeEdge(scan.nextInt(), scan.nextInt());
      			break;
+     		case 6:
+     			/*System.out.println("Enter the start vertex to do BFS");
+     			boolean visited[] = new boolean[cities.size()];
+     			adjacencyList.BFS_LevelOrderTraversal(scan.nextInt(), visited);*/
+     			adjacencyList.BFS();
+     			break;
+     		case 7:
+     			System.out.println("Enter the start vertex to do DFS");
+     			boolean visited[] = new boolean[cities.size()];
+     			adjacencyList.DFS_withStartVertex(scan.nextInt(),visited);
+     			break;	
      		default:
      			System.out.println("Sorry your input wasn't recognized ");
      			break;

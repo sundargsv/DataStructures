@@ -76,7 +76,7 @@ public class BinarySearchTree {
 			}
 		}
 	}
-	
+	/* Breadth first traversal */
 	public void levelOrderDisplay(){
 		if(root == null){
 			throw new NoSuchElementException("Underflow Exception");

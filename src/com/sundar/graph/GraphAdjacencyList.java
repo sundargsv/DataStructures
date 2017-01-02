@@ -4,17 +4,27 @@ import java.util.*;
 
 public class GraphAdjacencyList {
 
+	private ArrayList<Integer> vertices = new ArrayList<Integer>();
 	private Map<Integer, List<Integer>> adjacencyList;
 	private static int connectionCount;
-	public GraphAdjacencyList(int numberOfVertices) {
+	private static int vertexCount;
+	public GraphAdjacencyList(ArrayList<Integer> vertexList) {
 		super();
 		adjacencyList = new HashMap<Integer, List<Integer>>();
+		
 		connectionCount = 0;
-		for(int i = 1; i <= numberOfVertices; i ++){
-			/* new List<Integer>() List type cannot be instantiated */
+		vertexCount = vertexList.size();
+		for (Integer integer : vertexList) {
+			vertices.add(integer);
+			 //new List<Integer>() List type cannot be instantiated 
+				adjacencyList.put(integer, new LinkedList<Integer>());
+		}
+		/*for(int i = 0; i <= vertexCount - 1; i ++){
+			
+			 new List<Integer>() List type cannot be instantiated 
 			adjacencyList.put(i, new LinkedList<Integer>());
 			
-		}
+		}*/
 	}
 	
 	public int getConnectionSize() {
@@ -78,5 +88,83 @@ public class GraphAdjacencyList {
 				System.out.println("->"+integer.intValue());
 			}
 		}
+	}
+	
+	public void BFS_LevelOrderTraversal(int startVertex, boolean []visited){
+		int currVertex;
+		// Mark all the vertices as not visited(By default set as false)
+  		//visited[] = new boolean[vertexCount];
+  		
+  		 // Create a queue for BFS
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        
+     // Mark the current node as visited and enqueue it
+        visited[startVertex]=true;
+        queue.add(startVertex);
+        
+        while(queue.size() != 0){
+        	//Retrieve & dequeue the head by poll
+        	currVertex = queue.poll();
+        	System.out.print(currVertex+" ");
+        	
+        	// Get all adjacent vertices of the dequeued vertex s
+            // If a adjacent has not been visited, then mark it
+            // visited and enqueue it
+           // Iterator<Integer> i = (Iterator<Integer>) adjacencyList.get(currVertex);
+            ListIterator<Integer> i = adjacencyList.get(currVertex).listIterator();
+            while (i.hasNext())
+            {
+                int n = i.next();
+                if (!visited[n])
+                {
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+  		
+		
+	}
+	
+	/*
+	 * Note that the above code traverses only the vertices reachable from a given source vertex. 
+	 * All the vertices may not be reachable from a given vertex (example Disconnected graph). 
+	 * To print all the vertices, 
+	 * we can modify the BFS function to do traversal starting from all nodes one by one*/
+	public void BFS(){
+		boolean visited[] = new boolean[vertexCount];
+		for (Integer integer : vertices) {
+			 if (visited[integer] == false)
+	                BFS_LevelOrderTraversal(integer, visited);
+		}
+	}
+	
+	void DFS_withStartVertex(int startVertex,boolean visited[])
+    {
+        // Mark the current node as visited and print it
+        visited[startVertex] = true;
+        System.out.print(startVertex+" ");
+ 
+        // Recur for all the vertices adjacent to this vertex
+        ListIterator<Integer> i = adjacencyList.get(startVertex).listIterator();
+        while (i.hasNext())
+        {
+            int n = i.next();
+            if (!visited[n])
+            	DFS_withStartVertex(n,visited);
+        }
+    }
+	
+	public void DFS(){
+		// Mark all the vertices as not visited(set as
+        // false by default in java)
+        boolean visited[] = new boolean[vertexCount];
+ 
+        // Call the recursive helper function to print DFS traversal
+        // starting from all vertices one by one
+        // visited is the reference to track all visited nodes
+        for (int i=0; i<vertexCount; ++i)
+            if (visited[i] == false)
+                DFS_withStartVertex(i, visited);
 	}
 }
