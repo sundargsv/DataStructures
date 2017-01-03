@@ -129,8 +129,7 @@ public class GraphAdjacencyList {
 	/*
 	 * Note that the above code traverses only the vertices reachable from a given source vertex. 
 	 * All the vertices may not be reachable from a given vertex (example Disconnected graph). 
-	 * To print all the vertices, 
-	 * we can modify the BFS function to do traversal starting from all nodes one by one*/
+	 * To print all the vertices, we can modify the BFS function to do traversal starting from all nodes one by one*/
 	public void BFS(){
 		boolean visited[] = new boolean[vertexCount];
 		for (Integer integer : vertices) {
