@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class GraphImpl {
+public class DirectedGraphImpl {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int source, destination;
         int number_of_edges,number_of_vertices;
         
@@ -21,7 +20,7 @@ public class GraphImpl {
         for(int i = 0; i < number_of_vertices; i ++){
         	cities.add(scan.nextInt());
         }
-        GraphAdjacencyList adjacencyList = new GraphAdjacencyList(cities);
+        DirectedGraphOperations adjacencyList = new DirectedGraphOperations(cities);
         List<Integer> edgeList;
         int choice;
         char choose;
@@ -34,8 +33,9 @@ public class GraphImpl {
              System.out.println("3.Display all edge connection");
              System.out.println("4.Get Connection count/ edge count");
              System.out.println("5.Remove edge/ connection");
-             System.out.println("6.BFS - Level order traversal");
-             System.out.println("7.DFS Traversal");
+             System.out.println("6. Topological Sort");
+             //System.out.println("6.BFS - Level order traversal");
+             //System.out.println("7.DFS Traversal");
              choice = scan.nextInt();
              switch (choice) {
      		case 1:
@@ -63,12 +63,12 @@ public class GraphImpl {
      			/*System.out.println("Enter the start vertex to do BFS");
      			boolean visited[] = new boolean[cities.size()];
      			adjacencyList.BFS_LevelOrderTraversal(scan.nextInt(), visited);*/
-     			adjacencyList.BFS();
+     			adjacencyList.topologicalSort();
      			break;
      		case 7:
      			System.out.println("Enter the start vertex to do DFS");
      			boolean visited[] = new boolean[cities.size()];
-     			adjacencyList.DFS_withStartVertex(scan.nextInt(),visited);
+     			//adjacencyList.DFS_withStartVertex(scan.nextInt(),visited);
      			break;	
      		default:
      			System.out.println("Sorry your input wasn't recognized ");
@@ -77,10 +77,7 @@ public class GraphImpl {
         	System.out.println("\nDo you want to continue (Type y or n) \n");
         	choose = scan.next().charAt(0); 
         }while(choose == 'Y' || choose == 'y');
-      
-        
-        
-        
+
 	}
 
 }
