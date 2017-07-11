@@ -13,18 +13,18 @@ public class SelectionSort {
 	    
 	    for(int i = 0; i <= recordSize - 2; i ++){
 	    	/* find the min of the array from index i --> recordSize-1 */
-	    	min = array[i];//array[0]
+	    	//min = array[i];//array[0]
 	    	minIndex = i;
-	    	for(int j = i; j <= recordSize - 1; j ++){
-	    		if(array[j] < min){
-	    			min = array[j];
+	    	for(int j = i+1; j <= recordSize - 1; j ++){
+	    		if(array[j] < array[minIndex]){
+	    			
 	    			minIndex = j;
 	    		}
 	    	}
 	    	
 	    	/* swap min & ith element */
 	    	temp = array[i];
-	    	array[i] = min;
+	    	array[i] = array[minIndex];
 	    	array[minIndex] = temp;
 	    	
 	    }

@@ -54,10 +54,10 @@ public class BinarySearchTree {
 			nodeCount ++;
 			return;
 		}
-		Node current = root;
-		Node parent = null;
+		/*Node current = root;
+		Node parent = null;*/
 		
-		while(true){
+	/*	while(true){
 			parent = current;
 			if(id <= current.data){
 				current = current.left;
@@ -74,9 +74,33 @@ public class BinarySearchTree {
 					return;
 				}
 			}
+		}*/
+		Node parent = root;
+		
+		while(true){
+			//parent = current;
+			if(id <= parent.data){
+				
+				if(parent.left == null){
+					parent.left = newNode;
+					nodeCount ++;
+					return;
+				}
+				//NewParent
+				parent = parent.left;
+			}else{
+				if(parent.right == null){
+					parent.right = newNode;
+					nodeCount ++;
+					return;
+				}
+				//NewParent
+				parent = parent.right;
+			}
 		}
 	}
 	
+	/*BFT or LevelOrder traversal*/
 	public void levelOrderDisplay(){
 		if(root == null){
 			throw new NoSuchElementException("Underflow Exception");
@@ -103,6 +127,7 @@ public class BinarySearchTree {
 		
 	}
 	
+	/*DFT*/
 	public void preOrderTraversal(){
 		preOrder(root);
 	}

@@ -53,7 +53,7 @@ public class SinglyLinkedList {
     		tail = head;
     	}else{
     		tail.setLink(nptr);
-    		nptr = tail;
+    		tail = nptr;
     	}
     	display();
     }

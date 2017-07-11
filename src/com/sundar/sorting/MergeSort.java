@@ -12,7 +12,7 @@ public class MergeSort {
 
 	}
 
-	public int[] mergeSort(int[] array){
+	public int[]    mergeSort(int[] array){
 		
 		/*System.out.println(" ---- mergeSort called ----- " +(++count));
 		for(int k = 0; k < array.length; k ++)

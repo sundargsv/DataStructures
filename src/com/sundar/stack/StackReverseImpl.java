@@ -31,6 +31,7 @@ public class StackReverseImpl{
         	name.setCharAt(j, stack.pop());
         	j++;
         }
+       
         System.out.println("Reversed string is : "+name);
        
         

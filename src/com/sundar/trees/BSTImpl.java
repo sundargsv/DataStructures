@@ -9,11 +9,11 @@ public class BSTImpl {
 		Scanner scan = new Scanner(System.in);
         /* Creating object of BST */
 		BinarySearchTree bst = new BinarySearchTree();
-		 System.out.println("Singly Linked List Test\n");          
+		 System.out.println("BST Test\n");          
 	     char ch;
 	     /*  Perform BST operations  */
 		do{
-			 System.out.println("\nSingly Linked List Operations\n");
+			 System.out.println("\nBST Operations\n");
 	            System.out.println("1. Insert");
 	            System.out.println("2. Check isEmpty");
 	            System.out.println("3. Count of nodes");
